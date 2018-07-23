@@ -1,27 +1,23 @@
 # FIXED
 
 main.obj: ../main.c
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/math.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/float.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/access.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/elfnames.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/mathf.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/mathl.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/unaccess.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/stdio.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/linkage.h
-main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/stdarg.h
+main.obj: C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/stdio.h
 main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/stdlib.h
+main.obj: C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/linkage.h
+main.obj: ../tistdtypes.h
+main.obj: C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/Dsplib.h
+main.obj: C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/tms320.h
+main.obj: ../overlapSaveFiltering.h
+main.obj: ../floatingpointdft.h
+main.obj: C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/math.h
 
 ../main.c: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/math.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/float.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/access.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/elfnames.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/mathf.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/mathl.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/unaccess.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/stdio.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/linkage.h: 
-C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/stdarg.h: 
+C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/stdio.h: 
 C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/stdlib.h: 
+C:/ti/ccsv8/tools/compiler/c5500_4.4.1/include/linkage.h: 
+../tistdtypes.h: 
+C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/Dsplib.h: 
+C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/tms320.h: 
+../overlapSaveFiltering.h: 
+../floatingpointdft.h: 
+C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/include/math.h: 
