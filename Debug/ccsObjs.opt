@@ -1,1 +1,1 @@
-"./main.obj" "../lnkx.cmd" -llibc.a -l"C:/Users/ferna/Documents/ccs_workspace/dftlab3/dsplib_2.40.00/55xdspx.lib" 
+"./main.obj" "../lnkx.cmd" -llibc.a -l"D:/ferna/Projetos/lab3_2a_atividade/dsplib_2.40.00/55xdspx.lib" 

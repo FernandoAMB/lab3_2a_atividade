@@ -30,7 +30,6 @@ void dft(double *signal, cdouble * dft, int size) {
         }
     }
 }
-
 inline unsigned getNextRevBit(unsigned r, unsigned n) {
     unsigned m;
     for (m = n >> 1; (!((r^=m)&m)); m >>=1);
@@ -62,7 +61,7 @@ void bitReverse128(cdouble * array, int size) {
  * revBit = 1 para fft
  * revBit = -1 para ifft
  */
-void fftFrequencyDecimation(cdouble array[128], int power2size, int revBit) {
+void fftFrequencyDecimation(cdouble array[128], int power2size, int revBit) { //algoritmo in-place!
     int n = 1 << power2size;
     int powerOf2, m , halfm, j, r;
     cdouble temp1, temp2;
@@ -71,8 +70,8 @@ void fftFrequencyDecimation(cdouble array[128], int power2size, int revBit) {
         m = 1 << powerOf2;
         halfm = m >> 1;
         for (j = 0; j < halfm; j++) {
-            e.re = cos(-revBit*2*M_PI*((double)j)/(double)m);
-            e.im = sin(-revBit*2*M_PI*((double)j)/(double)m);
+            e.re = cos(revBit*2*M_PI*((double)j)/(double)m);
+            e.im = sin(revBit*2*M_PI*((double)j)/(double)m);
             for (r = 0; r < n; r += m) {
                 hardCopycdouble(&array[r + j], &temp1);
                 hardCopycdouble(&array[r +j + halfm], &temp2);
@@ -92,17 +91,11 @@ void fftFrequencyDecimation(cdouble array[128], int power2size, int revBit) {
 
 
 
-void fftFrequencyDecimation128p(double *signal, cdouble * dft, int size) {
+void fftFrequencyDecimation128p(double *signal, cdouble * dft) {
     int i;
     for (i = 0; i < 128; i++) {
-        if (i < size) {
-            dft[i].re = signal[i];
-            dft[i].im = 0;
-        }
-        else {
-            dft[i].re = 0;
-            dft[i].im = 0;
-        }
+        dft[i].re = signal[i];
+        dft[i].im = 0;
     }
     fftFrequencyDecimation(dft, 7, 1);
     bitReverse128(dft, 128);
@@ -114,12 +107,7 @@ void ifftFrequencyDecimation128p(cdouble * dft, double * result) {
     bitReverse128(dft, 128);
     int i;
     for (i = 0; i < 128; i++) {
-        if (dft[i].im != 0) {
-            printf("Erro na ifft, indice %d", i);
-        }
-        else {
-            result[i] = dft[i].re;
-        }
+        result[i] = dft[i].re/128;
     }
 }
 

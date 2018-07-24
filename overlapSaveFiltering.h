@@ -27,20 +27,43 @@ double signal[1024] = {1, 9.043739e-01, 6.528493e-01, 3.366408e-01, 6.484963e-02
 int signalSize = 1024;
 void fastConvOverlapSave(double * filter, double * signal, double * result, int signalSize) {
     cdouble filterFFT[128], signalTempFFT[128], temp;
-    double signalifft[128];
-    fftFrequencyDecimation128p(filter, filterFFT, 128);
-    int indexSegmento, i;
+    double signalifft[128], signalTemp[128];
+    int indexSegmento, i, inferiorLimit, superiorLimit = 0, j = 0;
+
+    fftFrequencyDecimation128p(filter, filterFFT);
+
+    for (i = 0; i < filterSize - 1; i++) {
+        result[i] = 0;
+    }
+
     for (indexSegmento = 0; indexSegmento < signalSize >> 7; indexSegmento++) {
-        fftFrequencyDecimation128p(&signal[128*indexSegmento], signalTempFFT, 128);
-        for (i  = 0; i < 128; i++) {
+        inferiorLimit = superiorLimit - (filterSize - 1); //repetir os ultimos filterSize - 1 elementos da parte anterior nos primeiros aqui
+        superiorLimit = inferiorLimit + 128;
+
+        for (i = 0; inferiorLimit < superiorLimit; i++) {
+            if (inferiorLimit < 0 || inferiorLimit >= signalSize) { //completar com zeros no inicio do sinal e no final.
+                signalTemp[i] = 0;
+            }
+            else {
+                signalTemp[i] = signal[inferiorLimit];
+            }
+            inferiorLimit++;
+        }
+
+        fftFrequencyDecimation128p(signalTemp, signalTempFFT);
+
+        for (i  = 0; i < 128; i++) { //produto da dft do filtro com a do sinal
             temp.re = prodcompRe(filterFFT[i], signalTempFFT[i]);
             temp.im = prodcompIm(filterFFT[i], signalTempFFT[i]);
             signalTempFFT[i] = temp;
         }
+
         ifftFrequencyDecimation128p(signalTempFFT, signalifft);
-        for (i = 5; i < 128; i++) {
-            result[i + 123*indexSegmento] = signalifft[i];
+
+        for (i  = 0; i < 128 - (filterSize - 1); i++, j++) {
+            result[j + filterSize - 1] = signalifft[i + filterSize - 1];
         }
+
     }
 }
 

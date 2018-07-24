@@ -143,11 +143,26 @@ int main(void)
 //    for (i = 0; i < 128; i++) {
 //        xf[i] = (Int16)(x[i] * 0x7FFF);
 //    }
+
     double result[1024];
+    cdouble fft[128];
+
     int i = 0;
     for (i = 0; i < 1024; i++) {
         result[i] = 0;
     }
+    fftFrequencyDecimation128p(filter, fft);
+    ifftFrequencyDecimation128p(fft, result);
+    for (i = 0; i < 128; i++) {
+        if (result[i] != filter[i]) {
+            printf("Ta errado\n");
+            break;
+        }
+
+    }
+    printf("Ta certo?\n");
+
+
     fastConvOverlapSave(filter, signal, result, signalSize);
 //    fftFixedPoint(xf, dfixed, 128);
     printf("gg\n");
